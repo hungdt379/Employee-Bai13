@@ -204,14 +204,108 @@ public class EmployeeView {
                 break;
         }
     }
-    
-    public void viewUpdateEmployee(Employee employee){
-        
+
+    public void viewUpdateEmployee(Employee employee) {
+        int countLine = 6;
+        System.out.println("Employee ID" + employee.getId());
+        System.out.println("1. Full name: " + employee.getFullName());
+        System.out.println("2. Birth day: " + employee.getBirthDay());
+        System.out.println("3. Phone: " + employee.getPhone());
+        System.out.println("4. Email: " + employee.getEmail());
+        System.out.println("5. Certificate: " + employee.showCertificate());
+        System.out.println("6. Type of employee: " + employee.getEmployeeType());
+        if (employee.getEmployeeType().equals(Common.EMPLOYEE_FRESHER)) {
+            Fresher fresher = (Fresher) employee;
+            System.out.println("7. Graduation date: " + fresher.getGraduationDate());
+            System.out.println("8. Graduation rank: " + fresher.getGraduationDate());
+            countLine += 2;
+        } else if (employee.getEmployeeType().equals(Common.EMPLOYEE_EXPERIENCE)) {
+            Experience experience = (Experience) employee;
+            System.out.println("7. Pro skill: " + experience.getProSkill());
+            System.out.println("8. Experience in year: " + experience.getExpInYear());
+            countLine += 2;
+        } else {
+            Intern intern = (Intern) employee;
+            System.out.println("7. Pro skill: " + intern.getMajor());
+            System.out.println("8. Experience in year: " + intern.getSemester());
+            System.out.println("9. Experience in year: " + intern.getUniversityName());
+            countLine += 3;
+        }
+        String numStr;
+        while (true) {
+            try {
+                System.out.println("Enter your selection: ");
+                numStr = s.nextLine();
+                common.checkInputNumber(numStr, 1, countLine);
+                break;
+            } catch (InputNumberException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        int number = Integer.parseInt(numStr);
+        if (number == 1) {
+            String newName;
+            while (true) {
+                try {
+                    System.out.println("Enter new full name: ");
+                    newName = s.nextLine();
+                    common.checkName(newName);
+                    break;
+                } catch (NameException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+            employee.setFullName(newName);
+            ec.update(employee);
+        } else if (number == 2) {
+            String newBirthDay;
+            while (true) {
+                try {
+                    System.out.println("Enter new birth day: ");
+                    newBirthDay = s.nextLine();
+                    common.checkDate(newBirthDay);
+                    break;
+                } catch (BirthDayException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+            employee.setBirthDay(newBirthDay);
+            ec.update(employee);
+        } else if (number == 3) {
+            String phone;
+            while (true) {
+                try {
+                    System.out.println("Enter new phone: ");
+                    phone = s.nextLine();
+                    common.checkPhone(phone);
+                    break;
+                } catch (PhoneException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+            employee.setPhone(phone);
+            ec.update(employee);
+        } else if (number == 4) {
+            String newEmail;
+            while (true) {
+                try {
+                    System.out.println("Enter new email: ");
+                    newEmail = s.nextLine();
+                    common.checkEmail(newEmail);
+                    break;
+                } catch (EmailException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+            employee.setEmail(newEmail);
+            ec.update(employee);
+        }
     }
 
     public void viewEmployeeManagement() {
 
         while (true) {
+            System.out.println("___________________________");
             System.out.println("Employee Management");
             System.out.println("1. Add New Employee");
             System.out.println("2. Update Employee");
@@ -226,7 +320,7 @@ public class EmployeeView {
                 try {
                     System.out.println("Enter your selection: ");
                     sn = s.nextLine();
-                    common.checkInputNumber(sn, 1, 6);
+                    common.checkInputNumber(sn, 1, 8);
                     break;
                 } catch (InputNumberException ex) {
                     System.out.println(ex.getMessage());
@@ -237,7 +331,10 @@ public class EmployeeView {
             if (number == 1) {
                 viewAddEmployee();
             } else if (number == 2) {
-
+                System.out.println("Enter ID: ");
+                String nid = s.nextLine();
+                Employee employee = ec.getEmployeeByID(nid);
+                viewUpdateEmployee(employee);
             } else if (number == 3) {
                 System.out.println("Enter ID: ");
                 String nid = s.nextLine();
@@ -248,6 +345,8 @@ public class EmployeeView {
                 ec.findExperience();
             } else if (number == 6) {
                 ec.findIntern();
+            } else if (number == 7) {
+                ec.exportFile();
             } else if (number == 8) {
                 System.exit(0);
             }
