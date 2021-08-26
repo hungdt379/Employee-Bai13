@@ -7,6 +7,7 @@ package model;
 
 
 
+
 /**
  *
  * @author dangt
@@ -17,6 +18,7 @@ public class Intern extends Employee{
     String universityName;
 
     public Intern() {
+        super();
     }
 
     public Intern(String major, String semester, String universityName, 
@@ -61,4 +63,5 @@ public class Intern extends Employee{
     public String showInfor(){
         return super.showInfor() + "\nmajor=" + major + "\nsemester=" + semester + "\nuniversityName=" + universityName + super.showCertificate();
     }
+    
 }

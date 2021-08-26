@@ -5,18 +5,20 @@
  */
 package model;
 
+
 /**
  *
  * @author dangt
  */
 public class Experience extends Employee{
-    private int expInYear;
+    private String expInYear;
     private String proSkill;
 
     public Experience() {
+        super();
     }
 
-    public Experience(int expInYear, String proSkill, String id, String fullName, 
+    public Experience(String expInYear, String proSkill, String id, String fullName, 
             String birthDay, String phone, String email, String employeeType, 
             String employeeCount) {
         super(id, fullName, birthDay, phone, email, employeeType, employeeCount);
@@ -24,11 +26,11 @@ public class Experience extends Employee{
         this.proSkill = proSkill;
     }
 
-    public int getExpInYear() {
+    public String getExpInYear() {
         return expInYear;
     }
 
-    public void setExpInYear(int expInYear) {
+    public void setExpInYear(String expInYear) {
         this.expInYear = expInYear;
     }
 

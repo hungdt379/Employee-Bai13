@@ -5,13 +5,17 @@
  */
 package employeemanagement;
 
+import model.Employee;
+
 /**
  *
  * @author dangt
  */
 public abstract class EmployeeAbtract {
 
-    public abstract void addNew();
+    public abstract void addNew(Employee employee);
+    
+    public abstract void update(Employee employee);
 
     public abstract void delete(String id);
 

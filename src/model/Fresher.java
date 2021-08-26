@@ -6,20 +6,21 @@
 package model;
 
 
-
 /**
  *
  * @author dangt
  */
-public class Fresher extends Employee{
+public class Fresher extends Employee {
+
     private String graduationDate;
     private String graduationRank;
 
     public Fresher() {
+        super();
     }
 
-    public Fresher(String graduationDate, String graduationRank, String id, 
-            String fullName, String birthDay, String phone, String email, 
+    public Fresher(String graduationDate, String graduationRank, String id,
+            String fullName, String birthDay, String phone, String email,
             String employeeType, String employeeCount) {
         super(id, fullName, birthDay, phone, email, employeeType, employeeCount);
         this.graduationDate = graduationDate;
@@ -41,13 +42,14 @@ public class Fresher extends Employee{
     public void setGraduationRank(String graduationRank) {
         this.graduationRank = graduationRank;
     }
-    
-    public String showMe(){
-        return super.showInfor() + "graduationDate=" + graduationDate + ", graduationRank=" + graduationRank + super.showCertificate();
+
+    public String showMe() {
+        return super.showInfor() + "\ngraduationDate=" + graduationDate + "\ngraduationRank=" + graduationRank + super.showCertificate();
     }
-    
+
     @Override
-    public String showInfor(){
-        return super.showInfor() + "graduationDate=" + graduationDate + ", graduationRank=" + graduationRank + super.showCertificate();
+    public String showInfor() {
+        return super.showInfor() + "\ngraduationDate=" + graduationDate + "\ngraduationRank=" + graduationRank + super.showCertificate();
     }
+
 }

@@ -17,39 +17,85 @@ import model.Intern;
  *
  * @author dangt
  */
-public class EmployeeController extends EmployeeAbtract{
+public class EmployeeController extends EmployeeAbtract {
+
     List<Employee> employees = new ArrayList<>();
-    
+
     @Override
-    public void addNew(){
-        
+    public void addNew(Employee employee) {
+        employees.add(employee);
     }
-    
+
     @Override
-    public void delete(String id){
-        employees.stream().filter((employee) -> (employee.getId().equals(id))).forEachOrdered((employee) -> {
-            employees.remove(employee);
-        });
+    public void update(Employee employee) {
+        Employee oldEmployee = getEmployeeByID(employee.getId());
+        for (Employee e : employees) {
+            if (oldEmployee.getId().equals(e.getId())) {
+                employees.remove(e);
+                break;
+            }
+        }
+        employees.add(employee);
     }
-    
+
     @Override
-    public void findIntern(){
-        employees.stream().filter((employee) -> (employee instanceof Intern)).forEachOrdered((employee) -> {
-            System.out.println(employee.showInfor());
-        });
+    public void delete(String id) {
+        int countDelete = 0;
+        for (Employee employee : employees) {
+            if (employee.getId().equals(id)) {
+                countDelete ++;
+                employees.remove(employee);
+            }
+        }
+        if(countDelete == 0) System.out.println("Not found Employee");
+        if(countDelete != 0) System.out.println("Delete Successfull");
     }
-    
+
     @Override
-    public void findExperience(){
-        employees.stream().filter((employee) -> (employee instanceof Experience)).forEachOrdered((employee) -> {
-            System.out.println(employee.showInfor());
-        });
+    public void findIntern() {
+        int countIntern = 0;
+        for (Employee employee : employees) {
+            if (employee instanceof Intern) {
+                countIntern ++;
+                System.out.println(employee.showInfor());
+            }
+        }
+        if(countIntern == 0) System.out.println("Not found Intern");
+
     }
-    
+
     @Override
-    public void findFesher(){
-        employees.stream().filter((employee) -> (employee instanceof Fresher)).forEachOrdered((employee) -> {
-            System.out.println(employee.showInfor());
-        });
+    public void findExperience() {
+        int countExperience = 0;
+        for (Employee employee : employees) {
+            if (employee instanceof Experience) {
+                countExperience++;
+                System.out.println(employee.showInfor());
+            }
+        }
+        if (countExperience == 0) System.out.println("Not found Experience");
+           
     }
+
+    @Override
+    public void findFesher() {
+        int countFresher = 0;
+        for (Employee employee : employees) {
+            if (employee instanceof Fresher) {
+                countFresher++;
+                System.out.println(employee.showInfor());
+            }
+        }
+        if (countFresher == 0) System.out.println("Not found Fresher");
+    }
+
+    public Employee getEmployeeByID(String id) {
+        for (Employee employee : employees) {
+            if (employee.getId().equals(id)) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
 }

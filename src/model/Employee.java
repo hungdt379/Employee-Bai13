@@ -21,7 +21,7 @@ public class Employee {
     private String email;
     private String employeeType;
     private String employeeCount;
-    List<Certificate> certificates;
+    public List<Certificate> certificates;
 
     public Employee() {
         certificates = new ArrayList<>();
@@ -112,10 +112,10 @@ public class Employee {
         int count = 1;
         for (Certificate certificate : certificates) {
             c = c + "\nCertificated " + count
-                    + "\nCertificatedID: " + certificate.certificateId
-                    + "\nCertificateName: " + certificate.certificateName
-                    + "\nCertificateName: " + certificate.certificateRank
-                    + "\nCertificateName: " + certificate.certificateDate;
+                    + "\n     CertificatedID: " + certificate.certificateId
+                    + "\n     CertificateName: " + certificate.certificateName
+                    + "\n     CertificateRank: " + certificate.certificateRank
+                    + "\n     CertificateDate: " + certificate.certificateDate;
             count++;
         }
         return c;

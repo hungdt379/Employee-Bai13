@@ -15,6 +15,18 @@ public class Certificate {
     String certificateRank;
     String certificateDate;
 
+    public Certificate() {
+    }
+
+    public Certificate(String certificateId, String certificateName, String certificateRank, String certificateDate) {
+        this.certificateId = certificateId;
+        this.certificateName = certificateName;
+        this.certificateRank = certificateRank;
+        this.certificateDate = certificateDate;
+    }
+    
+    
+
     public String getCertificateId() {
         return certificateId;
     }
@@ -46,7 +58,5 @@ public class Certificate {
     public void setCertificateDate(String certificateDate) {
         this.certificateDate = certificateDate;
     }
-    
-    
     
 }
